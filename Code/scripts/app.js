@@ -113,6 +113,7 @@ const app = {
             <button class="nav-button ${this.currentPage === 'input' ? 'active' : ''}" onclick="window.app.navigateTo('input')">Add Words</button>
             <button class="nav-button ${this.currentPage === 'review' ? 'active' : ''}" onclick="window.app.navigateTo('review')">Review</button>
             <button class="nav-button ${this.currentPage === 'progress' ? 'active' : ''}" onclick="window.app.navigateTo('progress')">Progress</button>
+            <button class="nav-button" onclick="window.app.signOut()">Sign Out</button>
           </div>
         </div>
         ${content}
@@ -238,6 +239,26 @@ const app = {
     `;
     document.body.appendChild(messageDiv);
     setTimeout(() => messageDiv.remove(), 3000);
+  },
+
+  async signOut() {
+    const ok = window.confirm('Are you sure you want to sign out?');
+    if (!ok) return;
+    try {
+      if (window.supabase && window.supabase.auth && typeof window.supabase.auth.signOut === 'function') {
+        await window.supabase.auth.signOut();
+      }
+    } catch (e) {
+      console.error('Sign out failed', e);
+    }
+    // Ensure UI returns to login screen
+    const loginScreen = document.getElementById('login-screen');
+    const appRootEl = document.getElementById('app');
+    if (loginScreen) loginScreen.style.display = '';
+    if (appRootEl) appRootEl.style.display = 'none';
+    // reset app page state
+    this.currentPage = 'landing';
+    this.currentReview = null;
   }
 };
 
