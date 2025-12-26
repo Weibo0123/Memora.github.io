@@ -1,9 +1,9 @@
-import { setAllWords, getAllWords, setCurrentReview, getCurrentReview, setCurrentPage, getCurrentPage, setIsRevealed, getIsRevealed } from './Code/scripts/srs/memoryState.js';
-import { selectRandomReview, checkAnswer, calculateStats, calculateNextState, adjustBrightness } from './Code/scripts/srs/scheduler.js';
-import { renderInputPage } from './Code/scripts/ui/input.js';
-import { renderReviewPage } from './Code/scripts/ui/review.js';
-import { renderProgressPage } from './Code/scripts/ui/dashboard.js';
-import { saveData, loadData } from './Code/scripts/storage/localStore.js';
+import { setAllWords, getAllWords, setCurrentReview, getCurrentReview, setCurrentPage, getCurrentPage, setIsRevealed, getIsRevealed } from './srs/memoryState.js';
+import { selectRandomReview, checkAnswer, calculateStats, calculateNextState, adjustBrightness } from './srs/scheduler.js';
+import { renderInputPage } from './ui/input.js';
+import { renderReviewPage } from './ui/review.js';
+import { renderProgressPage } from './ui/dashboard.js';
+import { saveData, loadData } from './storage/localStore.js';
 
 // Welcome page layout
 const defaultConfig = {
